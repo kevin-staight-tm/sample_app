@@ -1,0 +1,6 @@
+FROM jupyter/scipy-notebook
+RUN pip install dash
+RUN pip install plotly
+RUN pip install pandas
+RUN pip install jupytext
+OOPY . /home/jovyanCMD ["python", "fun.py"]
