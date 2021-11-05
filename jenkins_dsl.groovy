@@ -8,4 +8,14 @@ job('python example') {
     triggers {
         scm('H/5 * * * *')
     }
+    steps {
+        dockerBuildAndPublish {
+            repositoryName('kstaight/python-app-example')
+            tag('${GIT_REVISION,length=9}')
+            registryCredentials('dockerhub')
+            forcePull(false)
+            forceTag(false)
+            createFingerprints(false)
+            skipDecorate()
+    }
 }
