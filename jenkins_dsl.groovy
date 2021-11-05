@@ -17,5 +17,6 @@ job('python example') {
             forceTag(false)
             createFingerprints(false)
             skipDecorate()
+        }
     }
 }
