@@ -6,7 +6,6 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     }
    }
    stage('docker build/push') {
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
