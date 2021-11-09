@@ -32,7 +32,7 @@ node {
       }
       
       sh "echo 'hi'"
-      throw @;
+      throw e;
    }
    
 //    stage('docker build/push') {
