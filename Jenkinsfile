@@ -14,7 +14,7 @@ node {
          sh "docker run -d -p 9000:9000 --name python_app kstaight/python-app-example:${commit_id}"
       }
    } catch(e) {
-      sh "echo /"hi/""
+      sh "echo \"hi\""
    }
    
 //    stage('docker build/push') {
