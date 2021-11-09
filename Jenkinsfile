@@ -7,7 +7,9 @@ node {
    }
    stage('clean docker') {
 //       sh "docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app"
-      sh "docker ps -q --filter name=python_app"
+//       sh "docker ps -q --filter name=python_app"
+      script {POM_VERSION = sh(script: "/bin/bash -c 'docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app'", returnStdout: true)
+              echo "${POM_VERSION}"}
    }
    stage('run docker') {
       sh "docker build -t kstaight/python-app-example:${commit_id} ."
