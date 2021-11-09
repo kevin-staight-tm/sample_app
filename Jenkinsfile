@@ -8,10 +8,12 @@ node {
    stage('clean docker') {
 //       sh "docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app"
 //       sh "docker ps -q --filter name=python_app"
-      script {def command_to_run = $/eval "docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app"
-              echo "${command_to_run}"
-              POM_VERSION = sh(script: "${command_to_run}", returnStdout: true)
-              echo "${POM_VERSION}"}
+      script {
+               def command_to_run = $/eval "docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app" /$
+               echo "${command_to_run}"
+               POM_VERSION = sh(script: "${command_to_run}", returnStdout: true)
+               echo "${POM_VERSION}"
+      }
    }
    stage('run docker') {
       sh "docker build -t kstaight/python-app-example:${commit_id} ."
