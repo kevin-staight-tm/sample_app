@@ -6,8 +6,10 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('clean docker') {
-      sh "docker ps -q --filter name=python_app \| grep -q . && docker stop python_app && docker rm -fv python_app"
+//       sh "docker ps -q --filter name=python_app \| grep -q . && docker stop python_app && docker rm -fv python_app"
 //       sh "docker ps -q --filter name=python_app"
+      def command_to_run = "/bin/bash -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
+      sh "${command_to_run}"
 //       script {
 //                def command_to_run = "/bin/bash -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
 //                sh(script: "${command_to_run}", returnStdout: true)
