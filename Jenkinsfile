@@ -7,7 +7,7 @@ node {
    }
    stage('stop docker') {
       sh "docker build -t kstaight/python-app-example:${commit_id}" .
-      docker run -d -p 9000:9000 kstaight/python-app-example:${commit_id}
+      sh "docker run -d -p 9000:9000 kstaight/python-app-example:${commit_id}"
    }
 //    stage('docker build/push') {
 //      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
