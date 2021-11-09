@@ -16,7 +16,9 @@ node {
          sh "docker run -d -p 9000:9000 --name python_app kstaight/python-app-example:${commit_id}"
       }
    } catch(e) {
-      sh "echo \"hi\""
+      currentBuild.result = "FAILURE";
+      def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
+      def content = '${JELLY_SCRIPT,template="html"'
    }
    
 //    stage('docker build/push') {
