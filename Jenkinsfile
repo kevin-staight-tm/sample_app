@@ -11,7 +11,7 @@ node {
       script {
                def command_to_run = "docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app"
                echo "${command_to_run}"
-               POM_VERSION = sh(script: '/bin/bash -c "${command_to_run}"', returnStdout: true)
+               POM_VERSION = sh(script: '/bin/bash -c \"${command_to_run}\"', returnStdout: true)
                echo "${POM_VERSION}"
       }
    }
