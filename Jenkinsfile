@@ -6,8 +6,7 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('clean docker') {
-      sh "docker stop python_app"
-      sh "docker container rm python_app"
+      sh "docker ps -q --filter 'name=python_app' | grep -q . && docker stop rabbitmq && docker rm -fv rabbitmq"
    }
    stage('run docker') {
       sh "docker build -t kstaight/python-app-example:${commit_id} ."
