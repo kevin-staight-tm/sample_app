@@ -18,7 +18,19 @@ node {
    } catch(e) {
       currentBuild.result = "FAILURE";
       def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
-      def content = '${JELLY_SCRIPT,template="html"'
+      def content = '${JELLY_SCRIPT,template="html"' //from plugin
+      def to = emailextrecipients([
+         [$class: 'CulpritsRecipientProvider'],
+         [$class: 'DevelopersRecipientProvider'],
+         [$class: 'RequesterRecipientProvider'],
+      ])
+      
+      if(to != null && !to.isEmpty()) {
+         emailext(body: content, mimeType: 'text/html',
+                  replyTo: '$DEFAULT_REPLYTO', subject: subject,
+                  to: to, attachLog: true )
+      }
+      
       sh "echo 'hi'"
    }
    
