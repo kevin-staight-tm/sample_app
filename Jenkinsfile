@@ -16,26 +16,24 @@ node {
          sh "docker run -d -p 9000:9000 --name python_app kstaight/python-app-example:${commit_id}"
       }
    } catch(e) {
+      sh "echo 'BUILD FAILED - STARTING FAILURE SCRIPT'"
       currentBuild.result = "FAILURE";
       def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
       def content = '${JELLY_SCRIPT,template="html"}' //from plugin
       emailext(body: content, mimeType: 'text/html',
                replyTo: 'kstaight@hotmail.com', subject: subject,
                to: 'kstaight@hotmail.com', attachLog: true )
+      throw e;
 
 //       def to = emailextrecipients([
 //          [$class: 'CulpritsRecipientProvider'],
 //          [$class: 'DevelopersRecipientProvider'],
 //          [$class: 'RequesterRecipientProvider'],])
-
 //       if(to != null && !to.isEmpty()) {
 //          emailext(body: content, mimeType: 'text/html',
 //                   replyTo: 'kstaight@hotmail.com', subject: subject,
 //                   to: 'kstaight@hotmail.com', attachLog: true )
 //       }
-      
-      sh "echo 'hi'"
-      throw e;
    }
    
 //    stage('docker build/push') {
