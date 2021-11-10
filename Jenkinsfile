@@ -17,7 +17,7 @@ node {
       sh "echo 'BUILD FAILED - STARTING FAILURE SCRIPT'"
       currentBuild.result = "FAILURE"
       def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
-      def content = '${JELLY_SCRIPT,template="html"}' //from plugin
+      def content = '${JELLY_SCRIPT,template="text"}' //from plugin
       emailext(body: content, mimeType: 'text/html',
                replyTo: 'kstaight@hotmail.com', subject: subject,
                to: 'kstaight@hotmail.com', attachLog: true )
