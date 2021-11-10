@@ -18,7 +18,7 @@ node {
    } catch(e) {
       currentBuild.result = "FAILURE";
       def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
-      def content = '${JELLY_SCRIPT,template="html"' //from plugin
+      def content = '${JELLY_SCRIPT,template="html"}' //from plugin
       def to = emailextrecipients([
          [$class: 'CulpritsRecipientProvider'],
          [$class: 'DevelopersRecipientProvider'],
