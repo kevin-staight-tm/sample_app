@@ -23,7 +23,7 @@ node {
       emailext(body: content, mimeType: 'text/html',
                replyTo: 'kstaight@hotmail.com', subject: subject,
                to: 'kstaight@hotmail.com', attachLog: true )
-      throw e;
+      throw e
 
 //       def to = emailextrecipients([
 //          [$class: 'CulpritsRecipientProvider'],
