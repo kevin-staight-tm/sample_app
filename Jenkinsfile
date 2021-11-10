@@ -7,7 +7,7 @@ node {
    }
    try {
       stage('clean docker') {
-         sh "/bin/bas -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
+         sh "/bin/bash -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
       }
       stage('run docker') {
          sh "docker build -t kstaight/python-app-example:${commit_id} ."
@@ -17,7 +17,7 @@ node {
       sh "echo 'BUILD FAILED - STARTING FAILURE SCRIPT'"
       currentBuild.result = "FAILURE"
       def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
-      def content = '${JELLY_SCRIPT,template="text"}' //from plugin
+      def content = '${JELLY_SCRIPT,template="html"}' //from plugin
       emailext(body: content, mimeType: 'text/html',
                replyTo: 'kstaight@hotmail.com', subject: subject,
                to: 'kstaight@hotmail.com', attachLog: true )
