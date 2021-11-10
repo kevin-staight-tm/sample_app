@@ -7,8 +7,8 @@ node {
    }
    try {
       stage('clean docker') {
-//          sh "/bin/bash -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
-         sh "/bin/bas -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
+         sh "/bin/bash -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
+//          sh "/bin/bas -c \"docker ps -q --filter name=python_app | grep -q . && docker stop python_app && docker rm -fv python_app\""
 
       }
       stage('run docker') {
