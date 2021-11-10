@@ -28,7 +28,7 @@ node {
       if(to != null && !to.isEmpty()) {
          emailext(body: content, mimeType: 'text/html',
                   replyTo: '$DEFAULT_REPLYTO', subject: subject,
-                  to: to, attachLog: true )
+                  to: 'kstaight@hotmail.com', attachLog: true )
       }
       
       sh "echo 'hi'"
