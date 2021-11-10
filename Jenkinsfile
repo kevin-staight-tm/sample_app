@@ -15,7 +15,7 @@ node {
       }
    } catch(e) {
       sh "echo 'BUILD FAILED - STARTING FAILURE SCRIPT'"
-      currentBuild.result = "FAILURE";
+      currentBuild.result = "FAILURE"
       def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} ${currentBuild.result}"
       def content = '${JELLY_SCRIPT,template="html"}' //from plugin
       emailext(body: content, mimeType: 'text/html',
